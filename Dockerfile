@@ -16,12 +16,13 @@ COPY supervisord.conf /etc/supervisord.conf
 WORKDIR /app/toaststunt
 RUN git clone https://github.com/dmytri/wetty.git \
   && cd wetty \
+  && git checkout assembly-1.0.0 \
   && yarn install \
   && yarn run build
 WORKDIR /app/toaststunt
 RUN git clone https://github.com/Blightmud/Blightmud.git \
   && cd Blightmud \
-  && git checkout v2.3.2 \
+  && git checkout v2.3.3 \
   && cargo build --release
 RUN install /app/toaststunt/Blightmud/target/release/blightmud /usr/local/bin/blightmud
 EXPOSE 7777
